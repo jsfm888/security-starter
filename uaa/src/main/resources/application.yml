@@ -1,0 +1,49 @@
+mooc:
+  email-provider:
+    name: smtp
+  jwt:
+    access-token-expire-time: 300000
+    header: Authorization
+    prefix: 'Bearer '
+    refresh-token-expire-time: 2592000000
+    key: ${JWT_KEY}
+    refresh-key: ${JWT_REFRESH_KEY}
+server:
+  error:
+    whitelabel:
+      enabled: true
+  port: ${PORT:8080}
+  servlet:
+    encoding:
+      force: true
+spring:
+  cache:
+    type: redis
+  datasource:
+    initialization-mode: embedded
+  mail:
+    host: ${SMTP_HOST}
+    password: ${SMTP_PASSWORD}
+    port: ${SMTP_PORT}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    username: ${SMTP_USERNAME}
+  messages:
+    always-use-message-format: false
+    basename: messages
+    encoding: UTF-8
+    fallback-to-system-locale: true
+    use-code-as-default-message: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  profiles:
+    active: '@spring.profiles.active@'
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+  resources:
+    add-mappings: true
